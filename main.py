@@ -40,7 +40,7 @@ def deactivate_expired_links(db, user_id):
     if expired_links:
         db.commit()
 
-# Загрузка пользователя по ID (используется Flask-Login)
+# Загрузка пользователя по ID
 @login_manager.user_loader
 def load_user(user_id):
     with db_session.create_session() as db:
@@ -154,10 +154,34 @@ def stats_page():
         return render_template("stats.html", links=links)
 
 # Страница с формой для деактивации ссылок
-@app.route('/deactivate')
+@app.route('/deactivate', methods=["GET", "POST"])
 @login_required
 def deactivate_page():
+    if request.method == "POST":
+        short_code = request.form.get("short_code", "").strip()
+
+        if not short_code:
+            flash("Введите короткий код", "error")
+            return redirect("/deactivate")
+
+        with db_session.create_session() as db:
+            link = db.query(ShortLink).filter_by(short_code=short_code).first()
+
+            if not link:
+                flash("Ссылка не найдена", "error")
+            elif link.user_id != current_user.id:
+                flash("Вы не можете деактивировать чужую ссылку", "error")
+            elif not link.is_active:
+                flash("Ссылка уже деактивирована", "success")
+            else:
+                link.is_active = False
+                db.commit()
+                flash("Ссылка успешно деактивирована", "success")
+
+        return redirect("/deactivate")
+
     return render_template("deactivate.html")
+
 
 # API: Получение списка ссылок пользователя (с фильтрацией и пагинацией)
 @app.route("/api/links", methods=["GET"])

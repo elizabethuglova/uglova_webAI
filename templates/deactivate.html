@@ -8,38 +8,19 @@
 <body>
 <div class="box">
     <h1>Деактивация короткой ссылки</h1>
-    <form id="deactivateForm">
-        <label for="short_code">Введите короткий код, который идет после "http://localhost:8000/":</label><br>
-        <input type="text" id="short_code" required>
-        <br>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+            <p class="{{ category }}">{{ msg }}</p>
+        {% endfor %}
+    {% endwith %}
+    <form method="POST">
+        <label for="short_code">Введите короткий код, который идёт после "http://localhost:8000/":</label><br>
+        <input type="text" name="short_code" id="short_code" required><br>
         <button type="submit">Деактивировать</button>
     </form>
-    <p id="result"></p>
     <div class="actions">
         <a href="{{ url_for('index') }}" class="button-link">Назад к созданию ссылки</a>
     </div>
 </div>
-
-<script>
-    document.getElementById('deactivateForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const code = document.getElementById('short_code').value;
-        const result = document.getElementById('result');
-
-        result.className = "";
-        const response = await fetch(`/api/deactivate/${code}`, {
-            method: 'PATCH'
-        });
-
-        const data = await response.json();
-        if (data.message) {
-            result.textContent = data.message;
-            result.className = "success";
-        } else {
-            result.textContent = data.error || "Произошла ошибка";
-            result.className = "error";
-        }
-    });
-</script>
 </body>
 </html>

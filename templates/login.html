@@ -8,7 +8,6 @@
 <body>
     <div class="box">
         <h1>Вход</h1>
-
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flashes">
@@ -18,14 +17,11 @@
                 </div>
             {% endif %}
         {% endwith %}
-
-
         <form action="" method="post">
             <input type="email" name="email" placeholder="Email" autocomplete="email" required>
             <input type="password" name="password" placeholder="Пароль" autocomplete="current-password" required>
             <button type="submit">Войти</button>
         </form>
-
         <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
     </div>
 </body>

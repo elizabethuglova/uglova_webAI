@@ -12,17 +12,14 @@
         <input type="url" name="url" placeholder="Вставьте длинный URL" required>
         <button type="submit">Сократить</button>
     </form>
-
     {% if short_url %}
         <p><a href="{{ short_url }}">{{ short_url }}</a></p>
     {% endif %}
-
     <div class="link-buttons">
         <a href="{{ url_for('deactivate_page') }}" class="button-link">Перейти к деактивации ссылки</a>
         <a href="{{ url_for('my_links_page') }}" class="button-link">Посмотреть мои ссылки</a>
         <a href="{{ url_for('stats_page') }}" class="button-link">Статистика переходов</a>
     </div>
-
     <p style="margin-top: 15px;">
         <a href="{{ url_for('logout') }}">Выйти из аккаунта</a>
     </p>
