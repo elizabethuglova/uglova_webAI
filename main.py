@@ -33,7 +33,7 @@ def deactivate_expired_links(db, user_id):
     expired_links = db.query(ShortLink).filter(
         ShortLink.user_id == user_id,
         ShortLink.is_active == True,
-        ShortLink.expired_at < now
+        ShortLink.expired_at <= now
     ).all()
     for link in expired_links:
         link.is_active = False
