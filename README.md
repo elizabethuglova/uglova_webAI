@@ -1,7 +1,7 @@
 Как запустить:
 1. Склонировать репозиторий командой в терминале 
    
-   ```git clone https://github.com/elizabethuglova/uglova_web_yadro.git```
+   ```git clone https://github.com/elizabethuglova/uglova_webAI.git```
 
    либо можно скачать zip архив проекта
 2. Перейти в папку проекта 
