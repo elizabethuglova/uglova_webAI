@@ -10,10 +10,15 @@
         <h1>Вход</h1>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, msg in messages %}
-                <p class="{{ category }}">{{ msg }}</p>
-            {% endfor %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for category, msg in messages %}
+                        <p class="{{ category }}">{{ msg }}</p>  <!-- category = 'error' или 'success' -->
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% endwith %}
+
 
         <form action="" method="post">
             <input type="email" name="email" placeholder="Email" autocomplete="email" required>

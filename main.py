@@ -17,6 +17,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+login_manager.login_message = "Пожалуйста, войдите, чтобы получить доступ к странице."
 
 # Генерация уникального короткого кода для ссылки
 def generate_unique_code(db, length=6):
@@ -94,11 +95,21 @@ def register():
 def login():
     if request.method == "POST":
         with db_session.create_session() as db:
-            user = db.query(Users).filter_by(email=request.form["email"]).first()
-            if user and check_password_hash(user.password, request.form["password"]):
-                login_user(user)
-                return redirect("/")
-            flash("Неверный логин или пароль", "error")
+            email = request.form["email"]
+            password = request.form["password"]
+            user = db.query(Users).filter_by(email=email).first()
+
+            if not user:
+                flash("Пользователь не найден. Зарегистрируйтесь.", "error")
+                return redirect("/login")
+
+            if not check_password_hash(user.password, password):
+                flash("Неверный пароль", "error")
+                return redirect("/login")
+
+            login_user(user)
+            return redirect("/")
+
     return render_template("login.html")
 
 # Выход из аккаунта

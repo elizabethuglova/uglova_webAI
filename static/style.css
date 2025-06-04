@@ -23,7 +23,6 @@ input[type="password"] {
     margin: 10px;
 }
 
-/* Кнопка submit */
 button {
     padding: 6px 12px;
     cursor: pointer;
@@ -65,4 +64,14 @@ ul {
     text-align: left;
     display: inline-block;
     margin-top: 20px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }
