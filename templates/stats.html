@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика переходов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stats.css') }}">
+</head>
+<body>
+<div class="box">
+    <h1>Статистика переходов</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Короткий код</th>
+                <th>Оригинальный URL</th>
+                <th>Переходов</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+                <tr>
+                    <td><a href="/{{ link.short_code }}">{{ link.short_code }}</a></td>
+                    <td>{{ link.original_url }}</td>
+                    <td>{{ link.clicks }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="button-link">Назад к созданию ссылки</a>
+    </div>
+</div>
+</body>
+</html>

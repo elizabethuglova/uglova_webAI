@@ -1,0 +1,68 @@
+body {
+    font-family: sans-serif;
+    background-color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.box {
+    display: inline-block;
+    padding: 30px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+input[type="url"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 6px;
+    width: 300px;
+    margin: 10px;
+}
+
+/* Кнопка submit */
+button {
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+a.button-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #e0e0e0;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+a.button-link:hover {
+    background-color: #d5d5d5;
+}
+
+.link-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.actions a.button-link {
+    margin: 0 10px;
+}
+
+ul {
+    text-align: left;
+    display: inline-block;
+    margin-top: 20px;
+}

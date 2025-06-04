@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание короткой ссылки</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .link-buttons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #e0e0e0;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        .button-link:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>Создание короткой ссылки</h1>
+    <form method="post">
+        <input type="url" name="url" placeholder="Вставьте длинный URL" required>
+        <button type="submit">Сократить</button>
+    </form>
+
+    {% if short_url %}
+        <p><a href="{{ short_url }}">{{ short_url }}</a></p>
+    {% endif %}
+
+    <div class="link-buttons">
+        <a href="{{ url_for('deactivate_page') }}" class="button-link">Перейти к деактивации ссылки</a>
+        <a href="{{ url_for('my_links_page') }}" class="button-link">Посмотреть мои ссылки</a>
+        <a href="{{ url_for('stats_page') }}" class="button-link">Статистика переходов</a>
+    </div>
+
+    <p style="margin-top: 15px;">
+        <a href="{{ url_for('logout') }}">Выйти из аккаунта</a>
+    </p>
+</div>
+</body>
+</html>

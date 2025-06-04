@@ -1,0 +1,45 @@
+body {
+    font-family: sans-serif;
+    background-color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.box {
+    display: inline-block;
+    padding: 40px 30px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 350px;
+    box-sizing: border-box;
+}
+
+.box h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid #999;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+}
+
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}

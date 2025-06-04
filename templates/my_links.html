@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои короткие ссылки</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="box">
+    <h1>Мои короткие ссылки</h1>
+
+    <ul>
+    {% for link in links %}
+        <li>
+            <a href="/{{ link.short_code }}">{{ link.short_code }}</a>
+            {{ link.original_url }}
+            <span style="color: {% if link.is_active %}green{% else %}red{% endif %}; font-weight: bold; margin-left: 10px;">
+                {% if link.is_active %}(активна){% else %}(неактивна){% endif %}
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="button-link">Назад к созданию ссылки</a>
+    </div>
+</div>
+</body>
+</html>
